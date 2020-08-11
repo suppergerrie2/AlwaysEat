@@ -29,6 +29,7 @@ authors="suppergerrie2" #optional
 description='''
 Makes all food eatable even when you are full
 '''
+license="GNU General Public License v3.0"
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 #[[dependencies.AlwaysEat]] #optional
 #    # the modid of the dependency
