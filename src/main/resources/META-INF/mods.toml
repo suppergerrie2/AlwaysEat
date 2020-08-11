@@ -7,6 +7,8 @@
 modLoader="javafml" #mandatory
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
 loaderVersion="[28,)" #mandatory (26 is current forge version)
+
+license="GNU General Public License v3.0"
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 # The modid of the mod
@@ -29,7 +31,6 @@ authors="suppergerrie2" #optional
 description='''
 Makes all food eatable even when you are full
 '''
-license="GNU General Public License v3.0"
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 #[[dependencies.AlwaysEat]] #optional
 #    # the modid of the dependency
