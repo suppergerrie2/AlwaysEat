@@ -1,0 +1,25 @@
+{
+  "homepage": "https://www.curseforge.com/minecraft/mc-mods/alwayseat",
+  "1.12.2": {
+    "1.1": "- Made foods added through mantle also edible\n\n"
+  },
+  "1.13.2": {
+    "2.0": "- Updated to 1.13.2"
+  },
+  "1.14.2": {
+    "3.0": "- Update to 1.14.2"
+  },
+  "1.16.1": {
+    "4.0": "- Update to 1.16.1. \n Fix issues with config syncing"
+  },
+  "promos": {
+    "1.12.2-latest": "1.1",
+    "1.12.2-recommended": "1.1",
+    "1.13.2-latest": "2.0",
+    "1.13.2-recommended": "2.0",
+    "1.14.2-latest": "3.0",
+    "1.14.2-recommended": "3.0",
+    "1.16.1-latest": "4.0",
+    "1.16.1-recommended": "4.0"
+  }
+}
