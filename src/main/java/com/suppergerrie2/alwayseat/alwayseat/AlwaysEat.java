@@ -3,7 +3,6 @@ package com.suppergerrie2.alwayseat.alwayseat;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
