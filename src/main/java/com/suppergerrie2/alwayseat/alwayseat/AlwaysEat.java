@@ -1,5 +1,6 @@
 package com.suppergerrie2.alwayseat.alwayseat;
 
+import java.util.Objects;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -34,24 +35,24 @@ public class AlwaysEat {
 
     public static void updateFoodItems() {
         for (Item item : ForgeRegistries.ITEMS) {
-            if (item.isFood()) {
-
-                Food food = item.getFood();
-
-                if(!defaultValue.containsKey(item)) {
+            Food food = item.getFood();
+            if (food != null) {
+                if (!defaultValue.containsKey(item)) {
                     defaultValue.put(item, food.canEatWhenFull);
                 }
 
+                String registryName = Objects.requireNonNull(item.getRegistryName()).toString();
+
                 // In blacklist mode all items except the ones in the list will be set to true
                 if (Config.MODE.get() == Config.Mode.BLACKLIST) {
-                    if (!Config.ITEM_LIST.get().contains(item.getRegistryName().toString())) {
+                    if (!Config.ITEM_LIST.get().contains(registryName)) {
                         food.canEatWhenFull = true;
                     } else {
                         food.canEatWhenFull = defaultValue.get(item);
                     }
                 } else {
                     // In whitelist mode only items in the list will be set to true
-                    if (Config.ITEM_LIST.get().contains(item.getRegistryName().toString())) {
+                    if (Config.ITEM_LIST.get().contains(registryName)) {
                         food.canEatWhenFull = true;
                     } else {
                         food.canEatWhenFull = defaultValue.get(item);
@@ -59,7 +60,7 @@ public class AlwaysEat {
                 }
 
                 // If an item is in the uneatable items list always set it to false
-                if (Config.UNEATABLE_ITEMS.get().contains(item.getRegistryName().toString())) {
+                if (Config.UNEATABLE_ITEMS.get().contains(registryName)) {
                     food.canEatWhenFull = false;
                 }
             }
