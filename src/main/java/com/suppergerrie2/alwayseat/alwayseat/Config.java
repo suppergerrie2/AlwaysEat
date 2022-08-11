@@ -1,9 +1,7 @@
 package com.suppergerrie2.alwayseat.alwayseat;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.config.ModConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,6 @@ public class Config {
     }
 
     static {
-
         ForgeConfigSpec.Builder SERVER_BUILDER = new ForgeConfigSpec.Builder();
 
         SERVER_BUILDER.comment("Eatable settings").push(CATEGORY_EATABLE);
@@ -57,23 +54,11 @@ public class Config {
     static boolean isValidResourceLocation(Object o) {
         if(o instanceof ResourceLocation) return true;
 
-        if(o instanceof String) {
-            String resourceName = (String) o;
-            String[] astring = ResourceLocation.decompose(resourceName, ':');
-            return ResourceLocation.isValidNamespace(org.apache.commons.lang3.StringUtils.isEmpty(astring[0]) ? "minecraft" : astring[0]) && ResourceLocation.isPathValid(astring[1]);
+        if(o instanceof String resourceName) {
+            return ResourceLocation.tryParse(resourceName) != null;
         }
 
         return false;
     }
-
-    @SubscribeEvent
-    public static void onLoad(final ModConfig.Loading configEvent) {
-
-    }
-
-    @SubscribeEvent
-    public static void onReload(final ModConfig.Reloading configEvent) {
-    }
-
 
 }
