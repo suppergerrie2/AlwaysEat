@@ -1,9 +1,13 @@
 package com.suppergerrie2.alwayseat.alwayseat;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -32,6 +36,24 @@ public class AlwaysEat {
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.SERVER_CONFIG);
 
         INSTANCE.registerMessage(0, SyncSettings.class, SyncSettings::encode, SyncSettings::decode, SyncSettings::handle);
+
+        MinecraftForge.EVENT_BUS.addListener(this::rightClickItemEvent);
+    }
+
+    public void rightClickItemEvent(PlayerInteractEvent.RightClickItem event) {
+        ItemStack itemstack = event.getItemStack();
+        if(!itemstack.isEdible()) return;
+
+        Player player = event.getPlayer();
+
+        if(player.canEat(AlwaysEat.canEatItemWhenFull(itemstack, player))) {
+            player.startUsingItem(event.getHand());
+            event.setCanceled(true);
+            event.setCancellationResult(InteractionResult.CONSUME);
+        } else {
+            event.setCanceled(true);
+            event.setCancellationResult(InteractionResult.FAIL);
+        }
     }
 
     public static boolean canEatItemWhenFull(ItemStack item, LivingEntity livingEntity) {

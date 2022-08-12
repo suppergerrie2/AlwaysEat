@@ -1,25 +1,12 @@
-buildscript {
-    repositories {
-        // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
-
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-    }
-}
-
 plugins {
     id 'eclipse'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '5.1.+'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
-apply plugin: 'org.spongepowered.mixin'
 
 group = 'com.suppergerrie2.alwayseat'
-version = '5.0'
+version = '5.1'
 archivesBaseName = 'AlwaysEat'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -87,12 +74,6 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.1.73'
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-}
-
-mixin {
-    add sourceSets.main, "salwayseat.refmap.json"
-
-    config "salwayseat.mixins.json"
 }
 
 jar.finalizedBy('reobfJar')

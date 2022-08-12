@@ -27,7 +27,6 @@ public class Config {
         SERVER_BUILDER.comment("Eatable settings").push(CATEGORY_EATABLE);
 
         ITEM_LIST = SERVER_BUILDER
-                .worldRestart()
                 .comment(
                         "List of items",
                         "Depending on the mode only these items will be made eatable (WHITELIST) or these items will keep their vanilla behaviour (BLACKLIST)",
@@ -35,14 +34,12 @@ public class Config {
                 )
                 .defineList("item_list", new ArrayList<>(), Config::isValidResourceLocation);
         UNEATABLE_ITEMS = SERVER_BUILDER
-                .worldRestart()
                 .comment(
                         "List of items",
                         "These items will be made uneatable while full (Overrides vanilla behaviour)"
                 )
                 .defineList("uneatable_list", new ArrayList<>(), Config::isValidResourceLocation);
         MODE = SERVER_BUILDER
-                .worldRestart()
                 .comment("Mode as explained in other settings")
                 .defineEnum("mode", Mode.BLACKLIST);
 
