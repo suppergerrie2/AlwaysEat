@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Objects;
 
@@ -44,7 +45,7 @@ public class AlwaysEat {
         ItemStack itemstack = event.getItemStack();
         if(!itemstack.isEdible()) return;
 
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
 
         if(player.canEat(AlwaysEat.canEatItemWhenFull(itemstack, player))) {
             player.startUsingItem(event.getHand());
@@ -58,7 +59,7 @@ public class AlwaysEat {
 
     public static boolean canEatItemWhenFull(ItemStack item, LivingEntity livingEntity) {
 
-        String registryName = Objects.requireNonNull(item.getItem().getRegistryName()).toString();
+        String registryName = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item.getItem())).toString();
 
         // If an item is in the uneatable items list always set it to false
         if (!item.isEdible() || Config.UNEATABLE_ITEMS.get().contains(registryName)) {

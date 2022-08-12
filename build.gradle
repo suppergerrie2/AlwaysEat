@@ -6,14 +6,14 @@ plugins {
 }
 
 group = 'com.suppergerrie2.alwayseat'
-version = '5.1'
+version = '5.2'
 archivesBaseName = 'AlwaysEat'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
-    mappings channel: 'parchment', version: '2022.08.07-1.18.2'
+    mappings channel: 'parchment', version: '2022.08.10-1.19.2'
 
     runs {
         client {
@@ -71,7 +71,7 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.73'
+    minecraft 'net.minecraftforge:forge:1.19.2-43.0.8'
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
